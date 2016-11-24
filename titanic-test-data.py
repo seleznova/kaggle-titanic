@@ -87,4 +87,50 @@ survival_table[1,i,j] = np.mean(men_only_stats.astype(np.float))
 survival_table[ survival_table < 0.5 ] = 0
 survival_table[ survival_table >= 0.5 ] = 1
 
+<<<<<<< HEAD
 print survival_table
+
+
+test_file = open('test.csv', 'rb')
+test_file_object = csv.reader(test_file)
+header = test_file_object.next()
+predictions_file = open("genderclassmodel.csv", "wb")
+predictions_file = open("genderclassmodel.csv", "wb")
+p = csv.writer(predictions_file)
+p.writerow(["PassengerId", "Survived"])
+
+for row in test_file_object:                 # We are going to loop
+                                              # through each passenger
+                                              # in the test set
+  for j in xrange(number_of_price_brackets):  # For each passenger we
+                                              # loop thro each price bin
+    try:                                      # Some passengers have no
+                                              # Fare data so try to make
+      row[8] = float(row[8])                  # a float
+    except:                                   # If fails: no data, so
+      bin_fare = 3 - float(row[1])            # bin the fare according Pclass
+      break                                   # Break from the loop
+    if row[8] > fare_ceiling:              # If there is data see if
+                                              # it is greater than fare
+                                              # ceiling we set earlier
+      bin_fare = number_of_price_brackets-1   # If so set to highest bin
+      break                                   # And then break loop
+    if row[8] >= j * fare_bracket_size\
+       and row[8] < \
+       (j+1) * fare_bracket_size:             # If passed these tests
+                                              # then loop through each bin
+      bin_fare = j                            # then assign index
+      break
+if row[3] == 'female':  # If the passenger is female
+    p.writerow([row[0], "%d" % \
+                int(survival_table[0, float(row[1]) - 1, bin_fare])])
+else:  # else if male
+    p.writerow([row[0], "%d" % \
+                int(survival_table[1, float(row[1]) - 1, bin_fare])])
+
+# Close out the files.
+test_file.close()
+predictions_file.close()
+=======
+print survival_table
+>>>>>>> f3ab3901a6b77f2a785e3399ffc3388c71c196f6

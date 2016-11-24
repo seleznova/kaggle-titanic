@@ -1,4 +1,6 @@
 PassengerId,Survived
+<<<<<<< HEAD
+=======
 892,0
 893,1
 894,0
@@ -417,3 +419,4 @@ PassengerId,Survived
 1307,0
 1308,0
 1309,0
+>>>>>>> f3ab3901a6b77f2a785e3399ffc3388c71c196f6
